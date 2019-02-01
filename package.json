@@ -1,0 +1,20 @@
+{
+  "name": "30-project-city-explorer",
+  "version": "1.0.0",
+  "description": "![CF](http://i.imgur.com/7v5ASc8.png) LAB =================================================",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/georgeraymond92/30-project-city-explorer.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/georgeraymond92/30-project-city-explorer/issues"
+  },
+  "homepage": "https://github.com/georgeraymond92/30-project-city-explorer#readme"
+}
