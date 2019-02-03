@@ -1,0 +1,1 @@
+export const hostname = 'https://city-explorer-backend.herokuapp.com';
