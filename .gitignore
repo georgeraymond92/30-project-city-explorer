@@ -12,6 +12,7 @@
 /build
 
 # misc
+aws.yml
 .env
 .DS_Store
 .env.local

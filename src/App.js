@@ -1,51 +1,85 @@
 import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
-import Movie from './components/movie';
-// import MovieItem from './components/movie/movie';
 import Superagent from 'superagent';
+
+import Movie from './components/movie';
+import Meetup from './components/meetup';
+import Weather from './components/weather';
+import Trails from './components/trails';
+import Yelp from './components/yelp';
+import util from 'util';
 
 // react scripts, how to do Aliases
 import {hostname} from './utilities'
 
+const ResultString = (props) => {
+  console.log('rendering the result string, props.formatted_query', props.formatted_query);
+  console.log('rendering the result string, props', props);
+  return (<h2 className="query-placeholder">Here are the results for {props.location} {props.test}</h2>);
+}
+
+const __API_URL__ = 'https://city-explorer-backend.herokuapp.com';
+
 class App extends React.Component {
 
- static __API_URL__ = '';
-
- state={}
+  state={}
 
   fetchCityData = (e) => {
     e.preventDefault();
-    // let searchQuery = $('#input-search').val();
-
-  
-    let url = `${this.state.__API_URL__}/location`;
+    let url = `${__API_URL__}/location`;
+    console.log({url});
     Superagent.get(url)
       .query({data: this.state.searchQuery})
       .send()
-      .then( res => {
-        // code here
+      .then( location => {
+        console.log('results 🍇',location.body);
+        
+        this.setState({formatted_query: location.body.formatted_query});
+
+        // displayMap(location);
+        this.getResource('weather', location.body);
+        // getResource('movies', location.body);
+        // getResource('yelp', location.body);
+        // getResource('meetups', location.body);
+        // getResource('trails', location.body);
       })
-      .catch(console.error);
+      .catch(err => {
+        console.error(err);
+      })
+      // .catch(error => {
+      //   compileTemplate([error], 'error-container', 'error-template');
+      //   $('#map').addclassName('hide');
+      //   $('section, div').addclassName('hide');
+      // });
+
   }
-  //   $.ajax({
-  //     // url: `${this.state.__API_URL__}/location`,
-  //     // method: 'GET',
-  //     // data: {data: searchQuery}
-  //   })
-  //     .then(location => {
-  //       displayMap(location);
-  //       getResource('weather', location);
-  //       getResource('movies', location);
-  //       getResource('yelp', location);
-  //       getResource('meetups', location);
-  //       getResource('trails', location);
-  //     })
-  //     .catch(error => {
-  //       compileTemplate([error], 'error-container', 'error-template');
-  //       $('#map').addclassName('hide');
-  //       $('section, div').addclassName('hide');
-  //     });
+
+  getResource(resource, location) {
+    let url = `${__API_URL__}/${resource}`;
+    Superagent.get(url)
+      .query({data: location})
+      .then(result => {
+        console.log(` 🧨  ${util.inspect(result.body,{depth:10})}`);
+        console.log(resource);
+        this.setState({
+          [resource]: result.body,
+        });
+        this.setState({testWeatherSingle: result.body[0]});
+
+        // compileTemplate(result, `${resource}-results`, `${resource}-results-template`);
+        // <Template typeOfData="trails-results" typeOfData="trails-results"/>
+      })
+  }
+
+  // displayMap(location) {
+  //   $('.query-placeholder').text(`Here are the results for ${location.formatted_query}`);
+
+  //   $('#map').removeClass('hide');
+  //   $('section, div').removeClass('hide');
+
+  //   $('#map').attr('src', `https://maps.googleapis.com/maps/api/staticmap?center=${location.latitude}%2c%20${location.longitude}&zoom=13&size=600x300&maptype=roadmap
+  //   &key=AIzaSyDp0Caae9rkHUHwERAFzs6WN4_MuphTimk`)
   // }
 
   handleChange = (event) => {
@@ -64,51 +98,46 @@ class App extends React.Component {
 
 
         <form id="search-form">
-          <label for="search">Search for a location</label>
+          <label htmlFor="search">Search for a location</label>
           <input type="text" name="search" id="input-search" placeholder="Enter a location here" onChange={this.handleChange} />
           <button type="submit" onClick={this.fetchCityData}>Explore!</button>
         </form>
 
         <img id="map" className="hide" src="" alt="Map of search query" />
-        <h2 className="query-placeholder"></h2>
+        <ResultString location={this.state.formatted_query} test={this.state.searchQuery} />
+
         
         <section className="error-container"></section>
         
-        <div className="column-container hide">
-          <section>
-            <h3>Results from the Dark Sky API</h3>
-            <ul className="weather-results"></ul>
-          </section>
-          
-          <section className="yelp-container">
-            <h3>Results from the Yelp API</h3>
-            <ul className="yelp-results"></ul>
-          </section>
-          
-          <section>
-            <h3>Results from the Meetup API</h3>
-            <ul className="meetups-results"></ul>
-          </section>
-          
-          <section className="movie-container">
-            <h3>Results from The Movie DB API</h3>
-            <ul className="movies-results"></ul>
-          </section>
-          
-          <section>
-            <h3>Results from the Hiking Project API</h3>
-            <ul className="trails-results"></ul>
-          </section>
+        <div className="column-container">
+          {/* <Movie />
+          <Meetup /> */}
+          {/* <Weather testWeatherSingle={this.state.testWeatherSingle}/> */}
+          {/* <Trails />
+          <Yelp /> */}
         </div>
       </main>
       <footer>
-        <Movie />
       </footer>
-      <Movie />
       </>
 
     );
   }
 }
+
+
+
+
+
+
+// function compileTemplate(input, sectionClass, templateId) {
+//   $(`.${sectionClass}`).empty();
+
+//   let template = Handlebars.compile($(`#${templateId}`).text());
+
+//   input.forEach(element => {
+//     $(`.${sectionClass}`).append(template(element));
+//   })
+// }
 
 export default App;

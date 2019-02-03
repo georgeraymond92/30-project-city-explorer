@@ -1,7 +1,8 @@
 import React from 'react';
+import Template from './template';
 
 
-export default class Movie extends React.Component {
+class Movie extends React.Component {
   render(){
     return (
       <section className="movie-container">
@@ -12,6 +13,7 @@ export default class Movie extends React.Component {
   }
 }
 
+export default Movie;
 
 
 

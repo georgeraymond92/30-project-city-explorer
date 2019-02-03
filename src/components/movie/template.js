@@ -1,6 +1,6 @@
 import React from 'react';
 
-export default class MovieItem extends React.Component {
+class Template extends React.Component {
   constructor(props){
     super(props);
     this.state = {
@@ -24,3 +24,6 @@ export default class MovieItem extends React.Component {
     )
   }
 }
+
+export default Template;
+
