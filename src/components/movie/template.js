@@ -1,25 +1,13 @@
 import React from 'react';
 
 class Template extends React.Component {
-  constructor(props){
-    super(props);
-    this.state = {
-      title: '',
-      released_on: '',
-      total_votes: '',
-      image_url: '',
-      popularity: '',
-      average_votes: '',
-      overview: ''
-    }
-
-  }
   render(){
+    console.log(this.props)
     return (
       <li>
-        <p><span>{ this.state.title }</span> was relased on {this.state.released_on }. Out of { this.state.total_votes } total votes, {this.state.title} has an average vote of { this.state.average_votes } and a popularity score of { this.state.popularity }.</p>
-        <img src={ this.state.image_url }></img>
-        <p>{ this.stateoverview }</p>
+        <p><span>{ this.props.data.title }</span> was relased on {this.props.data.released_on }. Out of { this.props.data.total_votes } total votes, {this.props.data.title} has an average vote of { this.props.data.average_votes } and a popularity score of { this.props.data.popularity }.</p>
+        <img src={ this.props.data.image_url }></img>
+        <p>{ this.props.data.overview }</p>
       </li>
     )
   }

@@ -23,7 +23,17 @@ const __API_URL__ = 'https://city-explorer-backend.herokuapp.com';
 
 class App extends React.Component {
 
-  state={}
+  constructor(props) {
+    super(props);
+    this.state = {
+      weather: [],
+      movies: [],
+      trails: [],
+      yelp: [],
+      meetups: []
+
+    }
+  }
 
   fetchCityData = (e) => {
     e.preventDefault();
@@ -39,10 +49,10 @@ class App extends React.Component {
 
         // displayMap(location);
         this.getResource('weather', location.body);
-        // getResource('movies', location.body);
-        // getResource('yelp', location.body);
-        // getResource('meetups', location.body);
-        // getResource('trails', location.body);
+        this.getResource('movies', location.body);
+        this.getResource('yelp', location.body);
+        this.getResource('meetups', location.body);
+        this.getResource('trails', location.body);
       })
       .catch(err => {
         console.error(err);
@@ -65,7 +75,8 @@ class App extends React.Component {
         this.setState({
           [resource]: result.body,
         });
-        this.setState({testWeatherSingle: result.body[0]});
+
+
 
         // compileTemplate(result, `${resource}-results`, `${resource}-results-template`);
         // <Template typeOfData="trails-results" typeOfData="trails-results"/>
@@ -88,6 +99,11 @@ class App extends React.Component {
   }
 
   render() {
+    // if(!this.state.weatherdata)
+    //   return null;
+
+
+
     return (
       <>
         <header>
@@ -110,11 +126,12 @@ class App extends React.Component {
         <section className="error-container"></section>
         
         <div className="column-container">
-          {/* <Movie />
-          <Meetup /> */}
-          {/* <Weather testWeatherSingle={this.state.testWeatherSingle}/> */}
-          {/* <Trails />
-          <Yelp /> */}
+        <Weather data={this.state.weather}/>
+        <Yelp data={this.state.yelp} />
+        <Meetup data={this.state.meetups} />
+        <Movie data={this.state.movies} />
+        <Trails data={this.state.trails} />
+
         </div>
       </main>
       <footer>
