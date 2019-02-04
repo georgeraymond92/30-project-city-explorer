@@ -4,9 +4,8 @@ import Template from './template';
 class Meetup extends React.Component {
  render(){
     let lineItems = []
-    console.log(`☣️ ${this.props.data}`)
     for(let i = 0; i < this.props.data.length; i++){
-      lineItems.push(<Template data={this.props.data[i]} />);
+      lineItems.push(<Template key={i} data={this.props.data[i]} />);
     }
    return(
     <section>

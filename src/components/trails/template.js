@@ -10,8 +10,9 @@ class Template extends React.Component {
         <p>This trail has a rating of {this.props.data.stars} stars (out of {this.props.data.star_votes} votes)</p>
         <p>{this.props.datasummary}</p>
       </li>
-    )
+    );
   }
 }
+
 
 export default Template;
