@@ -1,3 +1,58 @@
+![CF](http://i.imgur.com/7v5ASc8.png) LAB 30
+=================================================
+
+## Lab 30: Project City Explorer
+
+### Author: George Raymond, Fletcher LaRure, Ryan Gallaway
+
+### Links and Resources
+* [repo](https://github.com/georgeraymond92/30-project-city-explorer)
+* [travis](http://xyz.com)
+* [back-end]https://city-explorer-backend.herokuapp.com) (however, not necessary with API harcoded)
+* [AWS deployment](http://lab30-rfg.s3-website-us-west-2.amazonaws.com/) 
+
+#### Documentation
+* [swagger](http://xyz.com) (API assignments only)
+* [jsdoc](http://xyz.com) (All assignments)
+
+### Components
+#### `footer.js`
+#### `Header.js`
+#### `map.js`
+#### `meetup.js`
+#### `movie.js`
+#### `resultstring.js`
+#### `searchform.js`
+#### `trails.js`
+#### `weather.js`
+#### `yelp.js`
+
+## Requirements
+* Re-Implement the City Explorer Front-End using React
+* With the exception the landing page, match the design and behavior of the [current application](https://codefellows.github.io/city_explorer/)
+* Bypass the home page. Rather than ask for an API URL, use the deployed API, located here:
+    * https://city-explorer-backend.herokuapp.com
+* Accept an input for city, state
+* Fetch the location from the API
+* Call the API for each service to retrieve the correct data
+* Render into each column, the properly formatted results of each service call
+
+### Setup
+#### `.env` requirements
+* `PORT` - Port described in ENV
+
+#### Running the app
+* `npm start`
+  
+#### Tests
+* `npm test`?
+* What assertions were made?
+* What assertions need to be / should be made?
+
+#### UML
+![City Explorer UML](./assets/uml.jpg)
+
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
