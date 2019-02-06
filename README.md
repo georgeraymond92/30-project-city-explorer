@@ -6,14 +6,17 @@
 ### Author: George Raymond, Fletcher LaRure, Ryan Gallaway
 
 ### Links and Resources
+
+[![Build Status](https://travis-ci.com/georgeraymond92/30-project-city-explorer.svg?branch=master)](https://travis-ci.com/georgeraymond92/30-project-city-explorer)
+
 * [repo](https://github.com/georgeraymond92/30-project-city-explorer)
-* [travis](http://xyz.com)
-* [back-end]https://city-explorer-backend.herokuapp.com) (however, not necessary with API harcoded)
+* [travis](https://travis-ci.com/georgeraymond92/30-project-city-explorer)
+* [back-end](https://city-explorer-backend.herokuapp.com) (however, not necessary with API hardcoded)
 * [AWS deployment](http://lab30-rfg.s3-website-us-west-2.amazonaws.com/) 
 
-#### Documentation
+<!-- #### Documentation
 * [swagger](http://xyz.com) (API assignments only)
-* [jsdoc](http://xyz.com) (All assignments)
+* [jsdoc](http://xyz.com) (All assignments) -->
 
 ### Components
 #### `footer.js`
